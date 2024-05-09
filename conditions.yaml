@@ -1,0 +1,22 @@
+- name: conditions
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: check weather roboshop user 
+    ansible.builtin.command: id roboshop
+    register: user #user is a variable name register is ued to store the output 
+    ignore errors: true #ansible will ignore error and will continue further witout stopping
+
+
+  - name: print variable value
+    ansible.builtin.debug:
+      msg: "user output is {{user}}"
+
+  - name: print exit status or return code
+    ansible.builtin.debug:
+      msg: "ststus is :{{user.rc}}"
+
+  - name: create user
+    ansible.builtin.user: #ansible user module
+      name: roboshop #name of the user you want to create
+    when: user.rc != 0 #condition
