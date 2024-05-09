@@ -1,0 +1,12 @@
+- name: loops
+  hosts: web
+  tasks:
+  - name: installing packages
+    ansible.builtin.package:
+      name: "{{item}}"
+      state: present
+    loop:
+    - git
+    - msql
+    - postfix
+    
