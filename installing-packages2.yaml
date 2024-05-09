@@ -1,0 +1,13 @@
+- name: loops
+  hosts: web
+  become: yes
+  tasks:
+  - name: install or uninstall packages 
+    ansible.buitin.package:
+      name: "{{item.name}}"
+      state: "{{item.state}}"
+    loop:
+    - {name: 'git', state: 'present'}
+    - {name: 'nginx', state: 'present'}
+    - {name: 'postfix', stste: 'absent'}
+    
