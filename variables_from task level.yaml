@@ -1,0 +1,13 @@
+- name: variables from task level
+  hosts: localhost
+  vars:
+    name: "harsha"
+    gender: "male"
+    town: "nellore"
+  tasks:
+  - name: check variables
+    vars:
+      name: "harshateja"
+    ansible.builtin.debug:
+      msg: "hi this is {{name}}"
+
